@@ -1,6 +1,9 @@
+import java.io.Console;
+
 public class Arvore {
 
     private Elemento root; // Raiz da arvore
+    private Elemento atual;
 
     public Arvore(){
         root=null;
@@ -157,39 +160,84 @@ public class Arvore {
     }
 
     public void inOrder(Elemento atual) {
-
+        if(atual == null){
+            System.out.print("Não foi encontrado a raiz");
+            return;
+        }
+        //ESQ
+        inOrder(atual.esq);
+        //item
+        System.out.print(atual.item + " |");
+        //dir
+        inOrder(atual.dir);
     }
 
     public void preOrder(Elemento atual) {
-        System.out.println("IMPLEMENTAR");
-        //TODO preOrder
-        //RAIZ - ESQ - DIR
+        if(atual == null){
+            System.out.print("Não foi encontrado o elemento");
+            return;
+        }
+        //item
+        System.out.print(atual.item + " |");
+        //esq
+        preOrder(atual.esq);
+        //dir
+        preOrder(atual.dir);
     }
 
     public void posOrder(Elemento atual) {
-        System.out.println("IMPLEMENTAR");
-        //TODO posOrder
-        //ESQ - DIR- RAIZ
+        if(atual == null){
+            System.out.print("Não foi encontrado o elemento");
+            return;
+        }
+        //esq
+        preOrder(atual.esq);
+        //dir
+        preOrder(atual.dir);
+        //item
+        System.out.print(atual.item + " |");
     }
 
     public int altura(Elemento atual) {
-        System.out.println("IMPLEMENTAR");
-        //TODO Altura Da Arvore
-        return 0;
+        if(atual == null){
+            System.out.print("Não foi encontrado o elemento");
+            return 0;
+        }
 
+        int esq = altura(atual.esq);
+        int dir = altura(atual.dir);
+
+        if(esq > dir){
+            System.out.print("o lado esquerdo é maior");
+            return esq;
+        }else{
+            System.out.print("o lado direito é maior");
+            return dir;
+        }
     }
 
     public int folhas(Elemento atual) {
-        System.out.println("IMPLEMENTAR");
-        //TODO Numero de folhas
-        return 0;
-
+        if(atual == null){
+            System.out.print("Não foi encontrado o elemento");
+            return 0;
+        }
+        if(atual.dir == null && atual.esq == null){
+            System.out.print("\n possui apenas 1 folha");
+            return 1;
+        }else{
+            return folhas(atual.esq) + folhas(atual.dir);
+        }
     }
 
     public int contarNos(Elemento atual) {
-        System.out.println("IMPLEMENTAR");
-        //TODO Numero de nós.
-        return 0;
+        int c = 1;
+        if(atual == null){
+            System.out.print("Não foi encontrado o elemento");
+            return 0;
+        }
+        c += contarNos(atual.esq);
+        c += contarNos(atual.dir);
+        return c;
     }
 
     public Elemento min() {
@@ -211,7 +259,5 @@ public class Arvore {
         }
         return anterior;
     }
-
-
 ////////////////////////////////////////////////
 }
