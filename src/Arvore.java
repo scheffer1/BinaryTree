@@ -1,4 +1,3 @@
-import java.io.Console;
 
 public class Arvore {
 
@@ -161,24 +160,22 @@ public class Arvore {
 
     public void inOrder(Elemento atual) {
         if(atual == null){
-            System.out.print("Não foi encontrado a raiz");
             return;
         }
         //ESQ
         inOrder(atual.esq);
         //item
-        System.out.print(atual.item + " |");
+        System.out.print(atual.item + " | ");
         //dir
         inOrder(atual.dir);
     }
 
     public void preOrder(Elemento atual) {
         if(atual == null){
-            System.out.print("Não foi encontrado o elemento");
             return;
         }
         //item
-        System.out.print(atual.item + " |");
+        System.out.print(atual.item + " | ");
         //esq
         preOrder(atual.esq);
         //dir
@@ -187,7 +184,6 @@ public class Arvore {
 
     public void posOrder(Elemento atual) {
         if(atual == null){
-            System.out.print("Não foi encontrado o elemento");
             return;
         }
         //esq
@@ -195,12 +191,11 @@ public class Arvore {
         //dir
         preOrder(atual.dir);
         //item
-        System.out.print(atual.item + " |");
+        System.out.print(atual.item + " | ");
     }
 
     public int altura(Elemento atual) {
         if(atual == null){
-            System.out.print("Não foi encontrado o elemento");
             return 0;
         }
 
@@ -208,21 +203,16 @@ public class Arvore {
         int dir = altura(atual.dir);
 
         if(esq > dir){
-            System.out.print("o lado esquerdo é maior");
             return esq;
-        }else{
-            System.out.print("o lado direito é maior");
+        }else
             return dir;
-        }
     }
 
     public int folhas(Elemento atual) {
         if(atual == null){
-            System.out.print("Não foi encontrado o elemento");
             return 0;
         }
         if(atual.dir == null && atual.esq == null){
-            System.out.print("\n possui apenas 1 folha");
             return 1;
         }else{
             return folhas(atual.esq) + folhas(atual.dir);
@@ -232,7 +222,6 @@ public class Arvore {
     public int contarNos(Elemento atual) {
         int c = 1;
         if(atual == null){
-            System.out.print("Não foi encontrado o elemento");
             return 0;
         }
         c += contarNos(atual.esq);

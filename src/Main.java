@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 public class Main {
@@ -20,16 +21,23 @@ public class Main {
             opcao = teclado.nextInt();
             switch(opcao) {
                 case 1: {
-                    System.out.print("\n Informe o valor (long) -> ");
-                    x = teclado.nextLong();
-                    arvore.inserir(x);
+                    do {
+                        System.out.print("\n Informe o valor (long) -> ");
+                        while (!teclado.hasNextLong()) {
+                            System.out.println("Não é um long");
+                            teclado.next();
+                            System.out.print("\n Informe o valor (long) -> ");
+                        }
+                        x = teclado.nextLong();
+                        arvore.inserir(x);
+                    }while (x<=0);
                     break;
                 }
                 case 2: {
                     System.out.println(" Informe o valor (long) -> ");
                     x = teclado.nextLong();
                     if ( !arvore.remover(x) )
-                        System.out.println(" Valor nao encontrado!");;
+                        System.out.println(" Valor nao encontrado!");
                     break;
                 }
                 case 3: {
